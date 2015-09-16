@@ -1,0 +1,20 @@
+{
+  "name": "auth-edge-component",
+  "version": "1.0.0",
+  "description": "Authenticate apikey/secret and post to messageQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@bitbucket.org:dataworx/auth-edge-component.git"
+  },
+  "keywords": [
+    "entry",
+    "point:",
+    "(index.js)"
+  ],
+  "author": "test command:",
+  "license": "ISC"
+}
