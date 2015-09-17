@@ -21,7 +21,10 @@ module.exports.run = function(options) {
     app.use(bodyParser.json());
     app.use(tokenAuth.authenticate);
     app.use(function(req, res) {
-        req.url = url.format({'query': {'study': req.token.study, 'resource' : req.token.resource, 'url':req.url }, 'pathname': path});
+        req.url = url.format({
+            'query': {'study': req.token.study, 'resource' : req.token.resource, 'url':req.url },
+            'pathname': path
+        });
         proxyServer.web(req, res, { target: target });
     });
     http.createServer(app).listen(PORT);
