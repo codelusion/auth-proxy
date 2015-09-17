@@ -23,5 +23,5 @@ module.exports.authenticate = function validateAuthenticationToken(req, res, nex
 
 function notAuthorized(res) {
     res.writeHead(403, {'Content-type' : 'application/json'});
-    res.end(JSON.stringify({'msg' :'Not Authorised'}));
+    res.end(JSON.stringify({'msg' :'Not Authorized'}));
 }
