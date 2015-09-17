@@ -16,5 +16,12 @@
     "(index.js)"
   ],
   "author": "test command:",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.0",
+    "cluster": "^0.7.7",
+    "connect": "^3.4.0",
+    "http-proxy": "^1.11.2",
+    "mongoose": "^4.1.7"
+  }
 }
