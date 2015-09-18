@@ -7,7 +7,6 @@ fs.watchFile(BLACKLISTED, function(c,p) { updateBlacklist(); });
 
 module.exports.block = function blockIfBlacklisted(req, res, next) {
     var ip = getClientIp(req);
-    console.log(ip);
     for (var i in blacklistedIPs) {
         if (blacklistedIPs[i] === ip) {
             console.log("Blocked: " + ip + " " + req.url);
