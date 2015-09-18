@@ -6,6 +6,7 @@ var tokenAuth = require('./token-auth');
 var httpProxy = require('http-proxy');
 var http = require('http');
 var url = require('url');
+var blacklist = require('./blacklist');
 
 
 module.exports.run = function(options) {
@@ -19,6 +20,7 @@ module.exports.run = function(options) {
     var app = connect();
 
     app.use(bodyParser.json());
+    app.use(blacklist.block);
     app.use(tokenAuth.authenticate);
     app.use(function(req, res) {
         req.url = url.format({
