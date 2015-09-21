@@ -3,7 +3,9 @@ var fs = require('fs');
 var blacklistedIPs = [];
 var BLACKLISTED = './blacklisted';
 
-fs.watchFile(BLACKLISTED, function(c,p) { updateBlacklist(); });
+fs.watchFile(BLACKLISTED, function (c, p) {
+    updateBlacklist();
+});
 
 module.exports.block = function blockIfBlacklisted(req, res, next) {
     var ip = getClientIp(req);
@@ -14,22 +16,25 @@ module.exports.block = function blockIfBlacklisted(req, res, next) {
             return;
         }
     }
+    req.ip = ip;
     next();
 };
 
 function updateBlacklist() {
     console.log('Updating blacklisted IPs....');
     blacklistedIPs = fs.readFileSync(BLACKLISTED, 'utf-8').split('\n')
-        .filter(function(rx) { return rx.length });
+        .filter(function (rx) {
+            return rx.length
+        });
     console.log(blacklistedIPs);
 }
 
 function accessDenied(res) {
-    res.writeHead(403, {'Content-type' : 'application/json'});
-    res.end(JSON.stringify({'msg' :'Access Denied'}));
+    res.writeHead(403, {'Content-type': 'application/json'});
+    res.end(JSON.stringify({'msg': 'ip blacklisted'}));
 }
 
-var getClientIp = function(req) {
+var getClientIp = function (req) {
     return (req.headers["X-Forwarded-For"] ||
         req.headers["x-forwarded-for"] ||
         '').split(',')[0] ||

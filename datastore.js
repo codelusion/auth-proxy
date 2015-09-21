@@ -22,12 +22,13 @@ if (db.user) {
 var Token = mongoose.model('Token', {
 	study: String,
 	resource: String,
-	apiId: String,
-	apiSecret: String,
+	clientId: String,
+	clientSecret: String,
 	expires: Date
 	});
 
 module.exports.locate = function locate(data, callback) {
+    data.expires = { $gt: Date.now() };
     Token.findOne(data, function (err, token) {
         if (err) {
             callback(err, null);

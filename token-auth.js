@@ -6,7 +6,7 @@ module.exports.authenticate = function validateAuthenticationToken(req, res, nex
     if (req.headers['authorization']) {
         var accessTokenPair = req.headers['authorization'].replace('Bearer', '').trim().split(':');
         if (accessTokenPair && accessTokenPair.length === 2) {
-            datastore.locate({apiId: accessTokenPair[0], apiSecret: accessTokenPair[1]}, function(err, token){
+            datastore.locate({clientId: accessTokenPair[0], clientSecret: accessTokenPair[1]}, function(err, token){
                 if (err || !token) {
                     console.error(err);
                     notAuthorized(res);

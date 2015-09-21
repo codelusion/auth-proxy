@@ -24,7 +24,7 @@ module.exports.run = function(options) {
     app.use(tokenAuth.authenticate);
     app.use(function(req, res) {
         req.url = url.format({
-            'query': {'study': req.token.study, 'resource' : req.token.resource, 'url':req.url },
+            'query': {'study': req.token.study, 'resource' : req.token.resource, 'clientId': req.token.clientId, 'url':req.url, 'ip': req.ip },
             'pathname': path
         });
         proxyServer.web(req, res, { target: target });
