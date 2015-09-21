@@ -39,6 +39,6 @@ module.exports.run = function(options) {
     });
     http.createServer(app).listen(PORT);
 
-    console.log('auth-proxy listening on: %j pid(%j)', PORT, process.pid);
+    console.log('auth-proxy listening on: %j pid(%j), target: %s', PORT, process.pid, target + path);
 
 };
